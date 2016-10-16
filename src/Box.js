@@ -11,16 +11,14 @@ const style = {
   padding: '1rem',
   textAlign: 'center',
   fontSize: '1rem',
-  lineHeight: 'normal',
-  float: 'left'
 };
 
 const boxTarget = {
   drop(props, monitor, component) {
+    debugger;
     return { name: 'Box' };
   }
 };
-
 
 class Box extends Component {
   render() {
