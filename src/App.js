@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import Knight from './Knight'
-import Container from './Container'
+import DragDropContainer from './DragDropContainer'
 
 class App extends Component {
   render() {
@@ -14,7 +14,7 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <Knight />
-        <Container />
+        <DragDropContainer />
       </div>
     );
   }

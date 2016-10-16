@@ -1,59 +1,58 @@
 import React, { Component, PropTypes } from 'react';
 import ItemTypes from './ItemTypes';
-import { DragSource } from 'react-dnd';
+import { DropTarget } from 'react-dnd';
 
 const style = {
-  border: '1px dashed gray',
-  backgroundColor: 'white',
-  padding: '0.5rem 1rem',
+  height: '12rem',
+  width: '12rem',
   marginRight: '1.5rem',
   marginBottom: '1.5rem',
-  cursor: 'move',
+  color: 'white',
+  padding: '1rem',
+  textAlign: 'center',
+  fontSize: '1rem',
+  lineHeight: 'normal',
   float: 'left'
 };
 
-const boxSource = {
-  beginDrag(props) {
-    return {
-      name: props.name
-    };
-  },
-
-  endDrag(props, monitor) {
-    const item = monitor.getItem();
-    const dropResult = monitor.getDropResult();
-
-    if (dropResult) {
-      window.alert( // eslint-disable-line no-alert
-        `You dropped ${item.name} into ${dropResult.name}!`
-      );
-    }
+const boxTarget = {
+  drop() {
+    return { name: 'Box' };
   }
 };
+
 
 class Box extends Component {
   render() {
-    const { isDragging, connectDragSource } = this.props;
-    const { name } = this.props;
-    const opacity = isDragging ? 0.4 : 1;
+    const { canDrop, isOver, connectDropTarget } = this.props;
+    const isActive = canDrop && isOver;
 
-    return (
-      connectDragSource(
-        <div style={{ ...style, opacity }}>
-          {name}
-        </div>
-      )
+    let backgroundColor = '#222';
+    if (isActive) {
+      backgroundColor = 'green';
+    } else if (canDrop) {
+      backgroundColor = 'red';
+    }
+
+    return connectDropTarget(
+      <div style={{ ...style, backgroundColor }}>
+        {isActive ?
+          'Release to drop' :
+          'Drag a box here'
+        }
+      </div>
     );
   }
-};
+}
 
 Box.propTypes = {
-  connectDragSource: PropTypes.func.isRequired,
-  isDragging: PropTypes.bool.isRequired,
-  name: PropTypes.string.isRequired
+  connectDropTarget: PropTypes.func.isRequired,
+  isOver: PropTypes.bool.isRequired,
+  canDrop: PropTypes.bool.isRequired
 };
 
-export default DragSource(ItemTypes.BOX, boxSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
+export default DropTarget(ItemTypes.BOX, boxTarget, (connect, monitor) => ({
+  connectDropTarget: connect.dropTarget(),
+  isOver: monitor.isOver(),
+  canDrop: monitor.canDrop()
 }))(Box);

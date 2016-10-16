@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import Dustbin from './Dustbin';
-import Box from './Box';
 
-class Container extends Component {
+import Box from './Box';
+import Item from './Item';
+
+class DragDropContainer extends Component {
   render() {
     return (
       <div>
         <div style={{ overflow: 'hidden', clear: 'both' }}>
-          <Dustbin />
+          <Box />
         </div>
         <div style={{ overflow: 'hidden', clear: 'both' }}>
-          <Box name='Glass' />
-          <Box name='Banana' />
-          <Box name='Paper' />
+          <Item name='Glass' />
+          <Item name='Banana' />
+          <Item name='Paper' />
         </div>
       </div>
     );
   }
 }
 
-export default DragDropContext(HTML5Backend)(Container);
+export default DragDropContext(HTML5Backend)(DragDropContainer);
