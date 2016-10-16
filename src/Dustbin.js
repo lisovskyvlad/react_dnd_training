@@ -23,21 +23,15 @@ const boxTarget = {
 
 
 class Dustbin extends Component {
-  static propTypes = {
-    connectDropTarget: PropTypes.func.isRequired,
-    isOver: PropTypes.bool.isRequired,
-    canDrop: PropTypes.bool.isRequired
-  };
-
   render() {
     const { canDrop, isOver, connectDropTarget } = this.props;
     const isActive = canDrop && isOver;
 
     let backgroundColor = '#222';
     if (isActive) {
-      backgroundColor = 'darkgreen';
+      backgroundColor = 'green';
     } else if (canDrop) {
-      backgroundColor = 'darkkhaki';
+      backgroundColor = 'red';
     }
 
     return connectDropTarget(
@@ -51,8 +45,14 @@ class Dustbin extends Component {
   }
 }
 
+Dustbin.propTypes = {
+  connectDropTarget: PropTypes.func.isRequired,
+  isOver: PropTypes.bool.isRequired,
+  canDrop: PropTypes.bool.isRequired
+};
+
 export default DropTarget(ItemTypes.BOX, boxTarget, (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
   isOver: monitor.isOver(),
   canDrop: monitor.canDrop()
-}))(Card);
+}))(Dustbin);
