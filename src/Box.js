@@ -16,7 +16,7 @@ const style = {
 };
 
 const boxTarget = {
-  drop() {
+  drop(props, monitor, component) {
     return { name: 'Box' };
   }
 };
@@ -25,10 +25,9 @@ const boxTarget = {
 class Box extends Component {
   render() {
     const { canDrop, isOver, connectDropTarget } = this.props;
-    const isActive = canDrop && isOver;
 
-    let backgroundColor = '#222';
-    if (isActive) {
+    let backgroundColor = 'teal';
+    if (isOver) {
       backgroundColor = 'green';
     } else if (canDrop) {
       backgroundColor = 'red';
@@ -36,10 +35,7 @@ class Box extends Component {
 
     return connectDropTarget(
       <div style={{ ...style, backgroundColor }}>
-        {isActive ?
-          'Release to drop' :
-          'Drag a box here'
-        }
+        {isOver ? 'Release to drop' : 'Drag a box here' }
       </div>
     );
   }

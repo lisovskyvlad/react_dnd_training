@@ -9,13 +9,15 @@ class DragDropContainer extends Component {
   render() {
     return (
       <div>
-        <div style={{ overflow: 'hidden', clear: 'both' }}>
+        <div>
+          <Box />
           <Box />
         </div>
-        <div style={{ overflow: 'hidden', clear: 'both' }}>
+        <div>
           <Item name='Glass' />
           <Item name='Banana' />
           <Item name='Paper' />
+          <Item name='Vata' />
         </div>
       </div>
     );

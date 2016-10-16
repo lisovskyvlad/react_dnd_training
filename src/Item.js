@@ -24,9 +24,7 @@ const ItemSource = {
     const dropResult = monitor.getDropResult();
 
     if (dropResult) {
-      window.alert( // eslint-disable-line no-alert
-        `You dropped ${item.name} into ${dropResult.name}!`
-      );
+      console.log(`You dropped ${item.name} into ${dropResult.name}!`);
     }
   }
 };
@@ -35,7 +33,7 @@ class Item extends Component {
   render() {
     const { isDragging, connectDragSource } = this.props;
     const { name } = this.props;
-    const opacity = isDragging ? 0.4 : 1;
+    const opacity = isDragging ? 0.22 : 1;
 
     return (
       connectDragSource(
