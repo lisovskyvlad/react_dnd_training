@@ -25,6 +25,9 @@ class DragDropContainer extends Component {
     const boxes = boxe_names.map((box_name) => {
       return <Box key={box_name} name={box_name} setLastItem={this.setLastItem(box_name)} item={this.state[box_name]} />
     });
+
+    const item_names = ['Glass', 'Banana', 'Paper', 'Vata', 'Grechka', 'Vodka'];
+    const items = item_names.map((box_name) => { return <Item key={box_name} name={box_name} /> });
     return (
       <div>
         <div>
@@ -32,10 +35,7 @@ class DragDropContainer extends Component {
         </div>
         <div style={{clear: 'both'}} />
         <div>
-          <Item name='Glass' />
-          <Item name='Banana' />
-          <Item name='Paper' />
-          <Item name='Vata' />
+          {items}
         </div>
         <div style={{clear: 'both'}} />
       </div>
