@@ -9,7 +9,7 @@ class DragDropContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.setLastItem = this.setLastItem.bind(this)
+    this.setLastItem = this.setLastItem.bind(this);
   }
 
   setLastItem(box_name) {
@@ -22,12 +22,13 @@ class DragDropContainer extends Component {
 
   render() {
     const boxe_names = ['box1', 'box2', 'box3'];
-    const boxes = boxe_names.map((box_name) => {
-      return <Box key={box_name} name={box_name} setLastItem={this.setLastItem(box_name)} item={this.state[box_name]} />
-    });
+    const boxes = boxe_names.map(box_name =>
+      <Box key={box_name} name={box_name} setLastItem={this.setLastItem(box_name)}
+           item={this.state[box_name]} />);
 
     const item_names = ['Glass', 'Banana', 'Paper', 'Vata', 'Grechka', 'Vodka'];
-    const items = item_names.map((box_name) => { return <Item key={box_name} name={box_name} /> });
+    const items = item_names.map(box_name => <Item key={box_name} name={box_name} />);
+
     return (
       <div>
         <div>
