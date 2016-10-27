@@ -11,18 +11,19 @@ const style = {
   padding: '1rem',
   textAlign: 'center',
   fontSize: '1rem',
+  float: 'left'
 };
 
 const boxTarget = {
   drop(props, monitor, component) {
-    debugger;
+    props.setLastItem(monitor.getItem().name);
     return { name: 'Box' };
   }
 };
 
 class Box extends Component {
   render() {
-    const { canDrop, isOver, connectDropTarget } = this.props;
+    const { item, name, canDrop, isOver, connectDropTarget } = this.props;
 
     let backgroundColor = 'teal';
     if (isOver) {
@@ -34,6 +35,11 @@ class Box extends Component {
     return connectDropTarget(
       <div style={{ ...style, backgroundColor }}>
         {isOver ? 'Release to drop' : 'Drag a box here' }
+        <br />
+        {name}
+        <p>
+          {item}
+        </p>
       </div>
     );
   }
