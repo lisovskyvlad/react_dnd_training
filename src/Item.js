@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import ItemTypes from './ItemTypes';
 import { DragSource } from 'react-dnd';
 
-import './css/item.sass';
-
 const ItemSource = {
   beginDrag(props) {
     return {
@@ -31,6 +29,7 @@ class Item extends Component {
       connectDragSource(
         <div className='item' style={{ opacity }}>
           {name}
+          <img role='presentation' src="http://fpoimg.com/100x100" />
         </div>
       )
     );

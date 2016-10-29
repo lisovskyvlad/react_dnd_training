@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import ItemTypes from './ItemTypes';
 import { DropTarget } from 'react-dnd';
 
-import './css/box.css';
-
 const boxTarget = {
   drop(props, monitor, component) {
     props.setLastItem(monitor.getItem().name);
