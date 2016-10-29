@@ -23,9 +23,11 @@ body
 .images_containter
   flex-basis: 25%
   margin: auto
+  margin-top: 0
 
   display: flex
-  flex-flow: column wrap
+  flex-flow: column nowrap
+  overflow-y: scroll
 
 // components
 .box
@@ -42,3 +44,8 @@ body
   padding: 1rem
   margin-bottom: 1rem
   cursor: move
+
+.images_containter-image_search
+  margin: 1em 0
+  padding: 5px
+  border: 1px solid black
