@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import { range } from 'lodash/util';
 
 import Box from './Box';
 import Item from './Item';
@@ -21,24 +22,23 @@ class DragDropContainer extends Component {
   }
 
   render() {
-    const boxe_names = ['box1', 'box2', 'box3'];
+    const boxe_names = range(1, 10).map(i => `Box ${i}`);
     const boxes = boxe_names.map(box_name =>
       <Box key={box_name} name={box_name} setLastItem={this.setLastItem(box_name)}
            item={this.state[box_name]} />);
 
-    const item_names = ['Glass', 'Banana', 'Paper', 'Vata', 'Grechka', 'Vodka'];
+    const item_names = ['Glass', 'Banana', 'Paper',
+      'Vata', 'Grechka', 'Vodka', 'Hallo', 'PIU PIU', 'WOW'];
     const items = item_names.map(box_name => <Item key={box_name} name={box_name} />);
 
     return (
-      <div>
-        <div>
+      <div className='root_container'>
+        <div className='places_containter'>
           {boxes}
         </div>
-        <div style={{clear: 'both'}} />
-        <div>
+        <div className='images_containter'>
           {items}
         </div>
-        <div style={{clear: 'both'}} />
       </div>
     );
   }

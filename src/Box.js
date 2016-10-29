@@ -2,17 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ItemTypes from './ItemTypes';
 import { DropTarget } from 'react-dnd';
 
-const style = {
-  height: '12rem',
-  width: '12rem',
-  marginRight: '1.5rem',
-  marginBottom: '1.5rem',
-  color: 'white',
-  padding: '1rem',
-  textAlign: 'center',
-  fontSize: '1rem',
-  float: 'left'
-};
+import './css/box.css';
 
 const boxTarget = {
   drop(props, monitor, component) {
@@ -33,7 +23,7 @@ class Box extends Component {
     }
 
     return connectDropTarget(
-      <div style={{ ...style, backgroundColor }}>
+      <div className='box' style={{ backgroundColor }}>
         {isOver ? 'Release to drop' : 'Drag a box here' }
         <br />
         {name}
