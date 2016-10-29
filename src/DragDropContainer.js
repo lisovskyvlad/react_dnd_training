@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { range } from 'lodash/util';
+import { values } from 'lodash/object';
+import { lowerCase } from 'lodash/string';
+import { random } from 'lodash/number';
 
 import Box from './Box';
 import Item from './Item';
@@ -20,7 +23,7 @@ class DragDropContainer extends Component {
   setLastItem(box_name) {
     return (val) => {
       var newState = {};
-      newState[box_name] = val;
+      newState[box_name] = values(val);
       this.setState(newState);
     }
   }
@@ -37,9 +40,16 @@ class DragDropContainer extends Component {
 
     let item_names = ['Glass', 'Banana', 'Paper', 'Vata', 'Grechka', 'Vodka', 'Hallo', 'PIU PIU', 'WOW'];
     if (this.state.filter !== '') {
-      item_names = item_names.filter(name => name.indexOf(this.state.filter) !== -1)
+      item_names = item_names.filter(
+        name => lowerCase(name).indexOf(lowerCase(this.state.filter)) !== -1
+      )
     }
-    const items = item_names.map(box_name => <Item key={box_name} name={box_name} />);
+    const items = item_names.map(
+      box_name => {
+        let url = "http://fpoimg.com/100x" + (100 + random(40));
+        return <Item key={box_name} name={box_name} image_url={url} />;
+      }
+    );
 
     const images_height = { height: window.innerHeight }
     return (

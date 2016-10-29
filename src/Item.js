@@ -5,7 +5,7 @@ import { DragSource } from 'react-dnd';
 const ItemSource = {
   beginDrag(props) {
     return {
-      name: props.name
+      name: props
     };
   },
 
@@ -22,14 +22,14 @@ const ItemSource = {
 class Item extends Component {
   render() {
     const { isDragging, connectDragSource } = this.props;
-    const { name } = this.props;
+    const { name, image_url } = this.props;
     const opacity = isDragging ? 0.22 : 1;
 
     return (
       connectDragSource(
         <div className='item' style={{ opacity }}>
           {name}
-          <img role='presentation' src="http://fpoimg.com/100x100" />
+          <img role='presentation' src={image_url} />
         </div>
       )
     );

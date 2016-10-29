@@ -4,6 +4,7 @@ import { DropTarget } from 'react-dnd';
 
 const boxTarget = {
   drop(props, monitor, component) {
+    // monitor.getItem() return values from ItemSource.beginDrag method
     props.setLastItem(monitor.getItem().name);
     return { name: 'Box' };
   }
@@ -20,14 +21,15 @@ class Box extends Component {
       backgroundColor = 'red';
     }
 
+    let item_info = <p></p>;
+    if (item) { item_info = <p>{item[0]}<img role='presentation' src={item[1]} /></p>;}
+
     return connectDropTarget(
       <div className='box' style={{ backgroundColor }}>
         {isOver ? 'Release to drop' : 'Drag a box here' }
         <br />
         {name}
-        <p>
-          {item}
-        </p>
+        {item_info}
       </div>
     );
   }
