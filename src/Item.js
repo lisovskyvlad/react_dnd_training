@@ -2,15 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ItemTypes from './ItemTypes';
 import { DragSource } from 'react-dnd';
 
-const style = {
-  border: '1px dashed gray',
-  backgroundColor: 'white',
-  padding: '0.5rem 1rem',
-  marginRight: '1.5rem',
-  marginBottom: '1.5rem',
-  cursor: 'move',
-  float: 'left'
-};
+import './css/item.sass';
 
 const ItemSource = {
   beginDrag(props) {
@@ -37,7 +29,7 @@ class Item extends Component {
 
     return (
       connectDragSource(
-        <div style={{ ...style, opacity }}>
+        <div className='item' style={{ opacity }}>
           {name}
         </div>
       )
