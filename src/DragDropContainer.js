@@ -3,7 +3,6 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { range } from 'lodash/util';
 import { values } from 'lodash/object';
-import { lowerCase } from 'lodash/string';
 import { random } from 'lodash/number';
 
 import Box from './Box';
@@ -41,12 +40,12 @@ class DragDropContainer extends Component {
     let item_names = ['Glass', 'Banana', 'Paper', 'Vata', 'Grechka', 'Vodka', 'Hallo', 'PIU PIU', 'WOW'];
     if (this.state.filter !== '') {
       item_names = item_names.filter(
-        name => lowerCase(name).indexOf(lowerCase(this.state.filter)) !== -1
+        name => name.toLowerCase().indexOf(this.state.filter.toLowerCase()) !== -1
       )
     }
     const items = item_names.map(
       box_name => {
-        let url = "http://fpoimg.com/100x" + (100 + random(40));
+        let url = "https://dummyimage.com/100X" + (100 + random(40)) + "/302130/c799ad.png";
         return <Item key={box_name} name={box_name} image_url={url} />;
       }
     );
