@@ -4,8 +4,10 @@ import { DragSource } from 'react-dnd';
 
 const ItemSource = {
   beginDrag(props) {
+    const { name, image_url } = props;
     return {
-      name: props
+      name,
+      image_url
     };
   },
 
@@ -14,7 +16,7 @@ const ItemSource = {
     const dropResult = monitor.getDropResult();
 
     if (dropResult) {
-      console.log(`You dropped ${item.name} into ${dropResult.name}!`);
+      console.log(`You dropped '${item.name}' into '${dropResult.name}'!`);
     }
   }
 };

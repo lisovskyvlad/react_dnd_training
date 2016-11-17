@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { range } from 'lodash/util';
-import { values } from 'lodash/object';
 import { random } from 'lodash/number';
 
 import Box from './Box';
@@ -20,9 +19,9 @@ class DragDropContainer extends Component {
   }
 
   setLastItem(box_name) {
-    return (val) => {
+    return (item) => {
       var newState = {};
-      newState[box_name] = values(val);
+      newState[box_name] = item;
       this.setState(newState);
     }
   }
