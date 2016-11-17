@@ -18,12 +18,10 @@ class DragDropContainer extends Component {
     this.filterImages = this.filterImages.bind(this);
   }
 
-  setLastItem(box_name) {
-    return (item) => {
-      var newState = {};
-      newState[box_name] = item;
-      this.setState(newState);
-    }
+  setLastItem(box_name, item) {
+    var newState = {};
+    newState[box_name] = item;
+    this.setState(newState);
   }
 
   filterImages(event) {
@@ -33,7 +31,7 @@ class DragDropContainer extends Component {
   render() {
     const boxe_names = range(1, 7).map(i => `Box ${i}`);
     const boxes = boxe_names.map(box_name =>
-      <Box key={box_name} name={box_name} setLastItem={this.setLastItem(box_name)}
+      <Box key={box_name} name={box_name} setLastItem={this.setLastItem}
            item={this.state[box_name]} />);
 
     let item_names = ['Glass', 'Banana', 'Paper', 'Vata', 'Grechka', 'Vodka', 'Hallo', 'PIU PIU', 'WOW'];

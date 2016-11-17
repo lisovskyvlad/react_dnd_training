@@ -5,7 +5,7 @@ import { DropTarget } from 'react-dnd';
 const boxTarget = {
   drop(props, monitor, component) {
     // monitor.getItem() return values from ItemSource.beginDrag method
-    props.setLastItem(monitor.getItem());
+    props.setLastItem(props.name, monitor.getItem());
     return { name: props.name };
   }
 };
