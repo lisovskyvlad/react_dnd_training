@@ -16,6 +16,12 @@ class DragDropContainer extends Component {
     this.setLastItem = this.setLastItem.bind(this);
 
     this.filterImages = this.filterImages.bind(this);
+
+    let item_names = ['Glass', 'Banana', 'Paper', 'Vata', 'Grechka', 'Vodka', 'Hallo', 'PIU PIU', 'WOW'];
+    this.items_names_urls = item_names.map(item_name =>
+      ({ 'name': item_name, 'image_url': `https://dummyimage.com/100X '${100 + random(40)}/302130/c799ad.png` })
+    )
+    this.boxe_names = range(1, 7).map(i => `Box ${i}`);
   }
 
   setLastItem(box_name, item) {
@@ -29,22 +35,18 @@ class DragDropContainer extends Component {
   }
 
   render() {
-    const boxe_names = range(1, 7).map(i => `Box ${i}`);
-    const boxes = boxe_names.map(box_name =>
-      <Box key={box_name} name={box_name} setLastItem={this.setLastItem}
-           item={this.state[box_name]} />);
+    const boxes = this.boxe_names.map(bname =>
+      <Box key={bname} name={bname} setLastItem={this.setLastItem} item={this.state[bname]} />
+    );
 
-    let item_names = ['Glass', 'Banana', 'Paper', 'Vata', 'Grechka', 'Vodka', 'Hallo', 'PIU PIU', 'WOW'];
+    let item_names_urls = this.items_names_urls;
     if (this.state.filter !== '') {
-      item_names = item_names.filter(
-        name => name.toLowerCase().indexOf(this.state.filter.toLowerCase()) !== -1
+      item_names_urls = this.items_names_urls.filter(
+        item => item.name.toLowerCase().indexOf(this.state.filter.toLowerCase()) !== -1
       )
     }
-    const items = item_names.map(
-      box_name => {
-        let url = "https://dummyimage.com/100X" + (100 + random(40)) + "/302130/c799ad.png";
-        return <Item key={box_name} name={box_name} image_url={url} />;
-      }
+    const items = item_names_urls.map(
+      item => <Item key={item.name} name={item.name} image_url={item.image_url} />
     );
 
     const images_height = { height: window.innerHeight }
